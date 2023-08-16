@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Columns Creater</title>
+    <link rel="stylesheet" type="text/css" href="style.css" >
+</head>
+<body>
+    <div>
+        <input type="number" value="6" id="n">
+        <input type="button" value="Enviar" onclick="add_column()">
+        <button id="btn">Mandar</button>
+    </div>
+    <div id="grade"></div>
+    
+</body>
+<script>
+    var numero = document.getElementById('n')
+    var grade = document.getElementById('grade')
+    var btn = document.getElementById('btn')
+    btn.addEventListener('click', add_column)
+
+    function add_column(){
+        var n = Number(numero.value)
+        var lista = []
+        for(var y = 0; y < (n); y++){
+            var new_element = document.createElement(`area${y}`)
+            new_element.innerText = Number(y+1)
+            new_element.innerHTML += ("_") + ((y+1)*(-1))
+            new_element.setAttribute('id', 'new_div')
+            grade.style.cssText += `grid-template-columns: repeat(${y+2}, 1fr);`;
+            grade.appendChild(new_element)
+            lista.push(new_element)
+// .push: adiciona itens à array.
+        }
+        lista[n-1].style.background = 'green'
+        console.log(Number(numero.value))
+        console.log(lista)
+    } 
+</script>
+</html>
